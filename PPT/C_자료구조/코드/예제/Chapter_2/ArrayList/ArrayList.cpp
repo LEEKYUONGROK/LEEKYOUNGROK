@@ -1,13 +1,17 @@
 ﻿#include <stdio.h>
 #include "ArrayList.h"
 
-void ListInit(List* plist)
+ArrayList::ArrayList()
+{
+}
+
+void ArrayList::ListInit(List* plist)
 {
 	(plist->numOfData) = 0; // 리스트에 저장된 데이터의 수는 0!
 	(plist->curPosition) = -1; // 현재 아무 위치도 가리키지 않음!
 }
 
-void Linsert(List* plist, LData data)
+void ArrayList::Linsert(List* plist, LData data)
 {
 	if (plist->numOfData >= LIST_LEN) // 더 이상 저장할 공간이 없다면…
 	{
@@ -19,7 +23,7 @@ void Linsert(List* plist, LData data)
 	(plist->numOfData)++; // 저장된 데이터의 수 증가
 }
 
-int LFirst(List* plist, LData* pdata) // 첫 번째 조회
+int ArrayList::LFirst(List* plist, LData* pdata) // 첫 번째 조회
 {
 	if (plist->numOfData == 0) // 저장된 데이터가 하나도 없다면!
 		return FALSE;
@@ -30,7 +34,7 @@ int LFirst(List* plist, LData* pdata) // 첫 번째 조회
 	return TRUE;
 }
 
-int LNext(List* plist, LData* pdata) // 두 번째 이후 조회
+int ArrayList::LNext(List* plist, LData* pdata) // 두 번째 이후 조회
 {
 	if (plist->curPosition >= (plist->numOfData) - 1) // 더 이상 참조할 데이터가 없다면!
 		return FALSE;
@@ -41,7 +45,7 @@ int LNext(List* plist, LData* pdata) // 두 번째 이후 조회
 	return TRUE;
 }
 
-LData LRemove(List* plist)
+LData ArrayList::LRemove(List* plist)
 {
 	int rpos = plist->curPosition; // 삭제할 데이터의 인덱스 값 참조
 	int num = plist->numOfData;
@@ -56,7 +60,10 @@ LData LRemove(List* plist)
 	return rdata;		   // 삭제된 데이터의 반환
 }
 
-int LCount(List* plist)
+int ArrayList::LCount(List* plist)
 {
 	return plist->numOfData;
+}
+ArrayList::~ArrayList()
+{
 }
